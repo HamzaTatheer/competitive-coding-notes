@@ -32,7 +32,7 @@ wait a minute ?
 
 doesnt that mean this is all possible permutations of the this sentence. you guessed right.
 
-we could simply use 7!. But wait, does it make a different if two R's or two U's or in fact, any same letters are swapped ? But 7! thinks each of one them as a different entity while we do not care.
+we could simply use 7!. But wait, does it make a difference if two R's or two U's or in fact, any same letters are swapped ? But 7! thinks each of one them as a different entity while we do not care so it would treat two same letters swapped as different sequences
 
 Solution ? Multinomial rule
 In order to remove this bias. Our solution will be 7!/(4! * 3!) = 35
