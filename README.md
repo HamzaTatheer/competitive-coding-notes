@@ -36,3 +36,11 @@ we could simply use 7!. But wait, does it make a difference if two R's or two U'
 
 Solution ? Multinomial rule
 In order to remove this bias. Our solution will be 7!/(4! * 3!) = 35
+
+
+## Question 2
+
+### Given a smaller strings and a bigger string b, design an algorithm to find all permutations of the shorter string within the longer one. Print the location of each permutation.
+
+
+
