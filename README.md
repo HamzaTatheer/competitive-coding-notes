@@ -1,4 +1,4 @@
-# competitive coding notes
+# Competitive Coding Practice notes
 coding/maths questions with intuitive understanding and lessons learned
 
 ## Question 1
