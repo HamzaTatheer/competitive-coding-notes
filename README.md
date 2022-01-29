@@ -38,9 +38,69 @@ Solution ? Multinomial rule
 In order to remove this bias. Our solution will be 7!/(4! * 3!) = 35
 
 
-## Question 2
+## Question 2. Given a smaller strings and a bigger string b, design an algorithm to find all permutations of the shorter string within the longer one. Print the location of each permutation.
 
-### Given a smaller strings and a bigger string b, design an algorithm to find all permutations of the shorter string within the longer one. Print the location of each permutation.
+len(s1) = n
+len(s2) = m
+
+1. Find permutations
+2. search
+
+
+with these two steps. Assuming that perm(s2) = O(m)
+and loop of n iterations
+we get complexity of O(nm)
+
+seems okayish. we can go lower
+
+1. store s2 in hash map O(m)
+2. Loop through s1 O(n)
+	
+	if any letter is present in hashmap, keep going untill all letters are covered
+	if you have covered the whole hash map
+	you found one occurence otherwise word is incomplete
+	(reset loop from next letter where the word started)
+	
+O(m+n) (approximate)
+
+One can alternatively use bit vector. store s2 inside a bit vector.
+
+## Question 3. Is Unique: Implement an algorithm to determine if a string has all unique characters. What if you cannot use additional data structures?
+
+### solution 1 with data structure
+put all characters in hash map
+incremenet counter (h[letter]+=1)
+if any one of them, exceeds 1, then its not unique
+
+
+Alternative Solution Found: Bit Vector can be used
+Advantage seems to be that whereas hashmap uses lots of space
+as each increment means one integer space ( 8 bit ).
+So a thousand characters would be 8000 bits needed. (more space complexity)
+This approach uses only 8 bits in total memory.
+
+int bits = 00000000000...(=0)
+
+in order to change a bit we add 2^A where A is bit no (0,1,2,3)
+so if we find 'a' 
+-> convert ascii to integer (a)
+-> if AND(bits,2^a) = 1, then number is not unique
+-> Otherwise bits = bits + 2^a
+
+This approach has O(1) as space complexity
+
+complexity O(n)
+
+### solution 2 without data structure
+Best Concievable run time is O(n) as
+each letter needs to be visited once
+
+we can use O(n^2) by have one loop for iteration and one loop for comparison
+
+sort array as letters are simply assci values (nlogn)
+iterate through it and check if current and previous letter is same O(m)
+complexity O(n+nlogn)=O(n)
+
 
 
 
