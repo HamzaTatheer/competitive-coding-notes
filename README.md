@@ -116,4 +116,32 @@ Afterwards, simply pass through hashmap to confirm these properties.
 Algorithm is O(n)
 
 
-## Question 5.
+## Question 5. One Away: There are three types of edits that can be performed on strings: insert a character, remove a character, or replace a character. Given two strings, write a function to check if they are one edit (or zero edits) away. (TRY AGAIN)
+
+Best concievable time is O(n+m) as you need to go through each string atleast once
+
+1. insert and delete (solved. just compare length) O(1)
+	-> if len is different return True
+	-> But how do you know if rest of letters are same ???????
+	
+2. replace (go through string and store number of mismatches. if one is different. its replace)
+	mismatch+=1
+	-> if (mismatch >2)
+		return True
+		
+return False
+
+Above solution is incorrect
+
+### Final Solution
+
+1. Loop through array and record mismatch
+2. if there is a mismatch and length is different,skip character in larger array and continue recording mismatches (while skipping the current one) 
+
+at the end,
+if lengths were different and no of mismatches == 0 return True
+if lengths were same and no of mismatches = 1 return True
+otherwise return False
+
+## Question 6. 
+
