@@ -102,5 +102,18 @@ iterate through it and check if current and previous letter is same O(m)
 complexity O(n+nlogn)=O(n)
 
 
+## Question 4. Given a string, write a function to check if it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards. A permutation is a rearrangement of letters. The palindrome does not need to be limited to just dictionary words.
 
 
+For a string to be part of palindrome.
+if its length is even number
+then each letter must occur twice (use two bit strings to keep track instead of hasmap in order to save memory)
+if its length is odd number
+then each letter must occur twice and one should occur only once
+use hashmap to store number of occurences.
+
+Afterwards, simply pass through hashmap to confirm these properties.
+Algorithm is O(n)
+
+
+## Question 5.
