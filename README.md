@@ -145,3 +145,112 @@ otherwise return False
 
 ## Question 6. 
 
+Given a circular linked list, implement an algorithm that returns the node at the
+beginning of the loop.
+DEFINITION
+Circular linked list: A (corrupt) linked list in which a node's next pointer points to an earlier node, so
+as to make a loop in the linked list.
+EXAMPLE
+Input: A - > B - > C - > D - > E - > C [the same C as earlier]
+Output: C
+
+
+
+This question was a tough one. One solution was solving it with hasmap.
+This meant that there would be O(n) space.
+
+I also tried reversing the linkedlist while visiting each node
+but there was no success.
+
+Final Solution:
+
+<img src='https://github.com/HamzaTatheer/competitive-coding-notes/blob/main/images/ques.png?raw=true'/>
+
+
+Use two pointers p1 and p2. p1 takes 1 step and p2 takes 2 step
+if there is no loop, p1 and p2 will never collide.
+If, however, there is a loop, there will come a time when p1 and p2
+will collide and p2/p1 will need to take p steps to reach starting of node
+where p is also the number of steps needed to reach the starting of node
+from head of linked list. We can then increment a new pointer from head
+and another from collision. Once they meet the same point, this is the starting node.
+
+
+Lets proof this distance p
+
+distance covered by p1 to reach start of loop: p
+distance covered by p2 when p1 reached start of loop: 2p
+displacement of p2 from start of loop: (2p-p)mod n == p mod n  (where is n is loop size)
+
+p1 will be going at 1 step at a time while p2 will be going 2 steps at a time.
+p2 will actually be slowly catching up the distance from p1 as its faster
+untill it catches it.
+
+so if p2 is at 5m from p1
+When p2 covers 5 more meters, due to double speed p1 will have caught up.
+i.e 2*5 = 5+5, 2*100 = 100+100. we always catch up (where 5,100 dist betw p1,p2)
+
+we know displacement of p2 from start. as p1 is orignally at start of loop.
+What is the distance from start of loop to cover (i.e till p1) ? 
+n -  displacement of p2 = n - ((p) mod n)
+
+
+1) 2*(n-((p)mod(n))) is the distance covered by p2 in order to reach p1
+
+2) And p1 will will be (n-((p)mod(n))) away from its current position (start of loop)
+
+
+
+you can use either 1) or 2) to find the position of collision.
+lets use 2 as its easier 
+ 
+we know that p1 is (n-((p)mod(n)) away from start of loop.
+So how much distance is needed to reach end of loop ?
+
+it is 
+= n - (n-((p)mod(n)) 
+= (p mod(n))
+
+One case is easy: p < n
+in that case p mod(n) = p.
+
+So we can move one pointer from head to cover p distance while pointer
+from collision point also covers p distance and collision tells us the start of loop
+
+The main takeaway is that by moving one step for both pointers,
+it WILL converge at start of loop and NOT miss each other.
+
+What if p >= n
+
+we will utilise the equation
+
+collision pointer location = p mod n
+
+can two different p with same n have the same collision pointer location ?
+yes.
+
+
+lets say p = 13, n = 10
+13 mod 10 = 3;
+
+make p = p - n means the collision pointer remains same
+i.e 3 mod 10 = 3.
+
+as a equation like X mod 10 = 3 starts with a 3 mod 10 and goes like 3+10 mod 10, 3+10+10 mod 10 ..
+
+so such a subtraction would bring us to such a case
+where p = p mod n (as p < n because we subtracted n)
+
+Hence, In order to execute this, we move both collision pointer and head equally.
+upon completing n steps, collision pointer comes back at same place (as its a loop)
+while p becomes smaller by n steps(Yet coresponding collision pointer of new p hasnt changed. 23 mod 10 == 13 mod 10 == 3 mod 10)
+
+Subtracting n steps(one by one,multiple times) would make us converge to the base case p < n and p = p mod n which ensures
+that our two pointers will meet as both are p steps away from each other.
+
+
+
+
+
+
+
