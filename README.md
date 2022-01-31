@@ -143,7 +143,7 @@ if lengths were different and no of mismatches == 0 return True
 if lengths were same and no of mismatches = 1 return True
 otherwise return False
 
-## Question 6. 
+## Question 6. (REVISE AGAIN)
 
 Given a circular linked list, implement an algorithm that returns the node at the
 beginning of the loop.
@@ -249,8 +249,7 @@ Subtracting n steps(one by one,multiple times) would make us converge to the bas
 that our two pointers will meet as both are p steps away from each other.
 
 
-
-
+## Question 7.
 
 
 
