@@ -251,5 +251,59 @@ that our two pointers will meet as both are p steps away from each other.
 
 ## Question 7.
 
+Sort Stack: Write a program to sort a stack such that the smallest items are on the top. You can use
+an additional temporary stack, but you may not copy the elements into any other data structure
+(such as an array). The stack supports the following operations: push, pop, peek, and is Empty.
+
+A naive solution for this question exists. Take minimum element out of s1 by popping out of it and storing those temporarily in another stack.
+Afterwards, you put those taken from s1, back in s1 besides the minimum one which you put back in s2 temporary stack and keep it there forever.
+
+You keep going like this while not altering the ordered values in s2, Untill s1 becomes empty.
+
+Afterwards you put s2 elements in s1 which reverses them and gives us the order we want.
+
+Complexity is O(n^2) and space O(2n)
+
+while(!s1.empty()) {
+
+	count_s1 = 0;
+	min_val = INT_MAX;
+	while(!s1.empty()){
+		value = s1.pop();
+		min_val = min(value,INT_MAX);
+		s2.push(value);
+		count_s1++;
+	}
+	
+	no_of_mins = 0;
+	
+	while(count_s1 > 0){
+		value = s2.pop();
+		if(value != min_val)
+			s1.push(value);
+		else
+			no_of_mins++;	
+		count_s1--;
+	}
+
+	while(no_of_mins != 0)
+		s2.push(min_val)
+
+}
+
+Another alternative simpler solution:
+we should simply put values in s2 in sorted order from s1.
+When our value to be inserted is out of order, we take the other ones out (temporarily in s1) and then put our value at its correct place and then put temporary ones of s1 back in s2 on top of our value.
+
+we keep repeating this.
+
+Both have O(n^2) time complexity and O(n) space
+
+
+
+## Question 8.
+
+
+
 
 
