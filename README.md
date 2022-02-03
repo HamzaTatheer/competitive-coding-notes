@@ -303,6 +303,55 @@ Both have O(n^2) time complexity and O(n) space
 
 ## Question 8.
 
+Route Between Nodes: Given a directed graph, design an algorithm to find out whether there is a
+route between two nodes.
+
+
+solution: simple bfs
+
+put start node in queue
+
+extract
+put its neighbours in queue
+if reached, then good
+
+
+BUT, remember one thing, you need to mark node as visited.
+otherwise, you can keep repeating a cycle or repeat a node multiple times.
+
+
+Another Solution is to start BFS from both nodes and stop when both meet in any position, otherwise finish all path and return False
+
+
+## Question 9.
+
+Minimal Tree: Given a sorted (increasing order) array with unique integer elements, write an algo­
+rithm to create a binary search tree with minimal height.
+
+
+BuildTree(g,arr,root,s,e)
+
+	if(s==e)
+		return arr[s];
+
+	index = (s+e)/2
+	val = arr[index]
+
+	Node n = new Node(val)
+	
+	if(root != NULL)		
+		g.connect(root,n)
+
+
+		g.connect(root,g.BuildTree(g,arr,n,s,index+s-1))
+		g.connect(root,g.BuildTree(g,arr,n,index+s+1,e))
+
+	return root
+
+
+BuildTree(g,arr,NULL,0,len(arr))
+
+
 
 
 
