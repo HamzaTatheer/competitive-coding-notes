@@ -351,6 +351,79 @@ BuildTree(g,arr,root,s,e)
 
 BuildTree(g,arr,NULL,0,len(arr))
 
+## Question 10
+
+List of Depths: Given a binary tree, design an algorithm which creates a linked list of all the nodes
+at each depth (e.g., if you have a tree with depth D, you'll have D linked lists).
+
+
+High Level Idea, finding depth and managing array is needed
+
+createList(lists,node,d){
+
+	if(node == NULL)
+		return;
+
+	lists[d].insert(node);
+	createlists(lists,node.left,d+1);
+	createlists(lists,node.right,d+1);
+}
+
+createList(lists,root,0);
+
+
+## Question 11
+
+Implement a function to check if a binary tree is balanced. For the purposes of
+this question, a balanced tree is defined to be a tree such that the heights of the two subtrees of any
+node never differ by more than one.
+
+
+WRONG IMPLEMENTATION BELOW. Under this implementation. you are check parent left tree and right tree difference.
+you need to check difference for each sub tree.
+
+Algorithm should work ideally in O(n)  (TRY_AGAIN)
+
+-----------------------------------------------------------------------
+	
+max_depth - min_depth 
+	
+where end of depth is defined as (nodes having null ptrs on left and right)
+
+This difference should be 1, not more.
+
+
+
+getDepth(node,d,max_depth,min_depth)
+
+	if(node.left == NULL && node.right == NULL)
+		min_depth = min(min_depth,d)
+		max_depth = max(max_depth,d)
+	else
+		getDepth(node.left,d+1,max_depth,min_depth)
+		getDepth(node.right,d+1,max_depth,min_depth)
+		
+		
+max_depth = INT_MIN;
+min_depth = INT_MAX;
+getDepth(root,0,max_depth,min_depth)		
+
+if(|max_depth - min_depth| <= 1)
+	print('balanced');
+else
+	print('not balanced')
+	
+-----------------------------------------------------------------------
+
+
+
+## Question 12
+
+
+
+
+
+
 
 
 
