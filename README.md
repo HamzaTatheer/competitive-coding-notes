@@ -419,7 +419,61 @@ else
 
 ## Question 12
 
+Write an algorithm to find the "next" node (i.e., in-order successor) of a given node in a
+binary search tree. You may assume that each node has a link to its parent.
 
+
+
+if has right child then, right left.
+else
+left child ancestors
+
+
+
+
+
+reachNode(search,node,ans)
+
+	found = False;
+	dir = ''
+
+	if(search < node)
+		found = reachNode(search,node.left,ans)
+		dir = 'l'
+
+	if(search > node)
+		found = reachNode(search,node.right,ans)
+		dir = 'r'
+	
+	if(found == False)
+		if(dir == 'l')
+			ans = node.val;
+			return True;
+
+		
+	if(search == node.val)
+	
+		if(node.right != NULL)
+			ans = stage2();
+			return True;		
+		else
+			return False;
+			
+			
+			
+	return false;
+		
+
+## Question 13
+
+<img src='https://github.com/HamzaTatheer/competitive-coding-notes/blob/main/images/47.png?raw=true'/>
+
+Depth First Search can also be used. Keep going untill you reach the project to be completed.
+It will always be the last thing to finish. So add it to the end of list. When you go one step back due to recursion.
+If the previous node doesnt have any other children, then it is correct to say that it will be the project completed prior to orignal project.
+If it does have other children, we can traverse it to reach the same situation as before (last project) and do the same thing as we did before.
+
+Once we have covered all the childs of the node, we know that everything occuring after it is already part of the list. The prior task to completing them would be our current node.
 
 
 
