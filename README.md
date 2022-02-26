@@ -1,6 +1,13 @@
 # Competitive Coding Practice notes
 coding/maths questions with intuitive understanding and lessons learned
 
+
+## SQL NOTES
+
+COUNT(*) will count all the rows in the table, including NULL values. On the other hand, COUNT(column name) will count all the rows in the specified column while excluding NULL values
+
+
+
 ## Question 1
 
 <img src='https://github.com/HamzaTatheer/competitive-coding-notes/blob/main/images/stats_question.png?raw=true'/>
