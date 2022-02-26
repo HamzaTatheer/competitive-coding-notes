@@ -2,11 +2,53 @@
 coding/maths questions with intuitive understanding and lessons learned
 
 
-## SQL NOTES
+## MYSQL NOTES
 
 COUNT(*) will count all the rows in the table, including NULL values. On the other hand, COUNT(column name) will count all the rows in the specified column while excluding NULL values
 
+there is = operator for comparing strings in mysql. instead use strcmp().
+For substring comparison, use substr(column_name,start,end) but remember that index starts at 1 not 0
 
+in mysql, there is no top but limit
+
+for subtracting from total - some rows
+
+use select count(*) - count(DISTINCT CITY) from station
+
+
+Query the list of CITY names starting with vowels (i.e., a, e, i, o, or u) from STATION. Your result cannot contain duplicates.
+
+simple way
+
+SELECT DISTINCT CITY FROM STATION 
+WHERE 
+STRCMP(SUBSTR(CITY,1,1),'a')=0
+OR
+STRCMP(SUBSTR(CITY,1,1),'e')=0
+OR
+STRCMP(SUBSTR(CITY,1,1),'i')=0
+OR
+STRCMP(SUBSTR(CITY,1,1),'o')=0
+OR
+STRCMP(SUBSTR(CITY,1,1),'u')=0
+;
+
+regular expression
+
+SELECT DISTINCT CITY FROM STATION
+WHERE REGEXP_LIKE(CITY,'^[aeiou]')
+
+another way
+
+SELECT DISTINCT CITY FROM STATION
+WHERE REGEXP_LIKE(CITY,'a|e|i|o|u')
+
+another
+
+SELECT DISTINCT CITY FROM STATION
+WHERE REGEXP_LIKE(CITY,'^a|^e|^i|^o|^u')
+
+but second is better
 
 ## Question 1
 
