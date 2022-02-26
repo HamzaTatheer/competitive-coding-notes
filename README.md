@@ -50,6 +50,15 @@ WHERE REGEXP_LIKE(CITY,'^a|^e|^i|^o|^u')
 
 but second is better
 
+SELECT COUNT(*) - COUNT(SELECT DISTINCT CITY FROM STATION) FROM STATION
+
+The above wont work as Count expects data of table in the From clause
+instead something like this works
+
+SELECT COUNT(*) - (SELECT COUNT(DISTINCT CITY) FROM STATION) FROM STATION;
+
+unlike sql, it is COUNT(DISTINCT CITY) not DISTINCT COUNT(CITY)
+
 ## Question 1
 
 <img src='https://github.com/HamzaTatheer/competitive-coding-notes/blob/main/images/stats_question.png?raw=true'/>
