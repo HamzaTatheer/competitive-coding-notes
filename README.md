@@ -326,6 +326,7 @@ Afterwards you put s2 elements in s1 which reverses them and gives us the order 
 
 Complexity is O(n^2) and space O(2n)
 
+```
 while(!s1.empty()) {
 
 	count_s1 = 0;
@@ -352,7 +353,7 @@ while(!s1.empty()) {
 		s2.push(min_val)
 
 }
-
+```
 Another alternative simpler solution:
 we should simply put values in s2 in sorted order from s1.
 When our value to be inserted is out of order, we take the other ones out (temporarily in s1) and then put our value at its correct place and then put temporary ones of s1 back in s2 on top of our value.
@@ -446,8 +447,7 @@ you need to check difference for each sub tree.
 
 Algorithm should work ideally in O(n)  (TRY_AGAIN)
 
------------------------------------------------------------------------
-	
+```	
 max_depth - min_depth 
 	
 where end of depth is defined as (nodes having null ptrs on left and right)
@@ -475,8 +475,7 @@ if(|max_depth - min_depth| <= 1)
 else
 	print('not balanced')
 	
------------------------------------------------------------------------
-
+```
 
 
 ## Question 12
