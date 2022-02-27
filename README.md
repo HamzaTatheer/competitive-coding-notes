@@ -59,6 +59,10 @@ SELECT COUNT(*) - (SELECT COUNT(DISTINCT CITY) FROM STATION) FROM STATION;
 
 unlike sql, it is COUNT(DISTINCT CITY) not DISTINCT COUNT(CITY)
 
+
+cities that start with and ends with vowels (notice use of '.')
+SELECT CITY FROM STATION WHERE CITY REGEXP '^[aeiou].*.[aeiou]$';
+
 ## Question 1
 
 <img src='https://github.com/HamzaTatheer/competitive-coding-notes/blob/main/images/stats_question.png?raw=true'/>
