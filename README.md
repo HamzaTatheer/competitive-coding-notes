@@ -539,9 +539,110 @@ Once we have covered all the childs of the node, we know that everything occurin
 
 
 
+# Code Forces
+
+## <a href='https://codeforces.com/problemset/problem/1279/C'>Stack Of Presents</a>
+
+```
+#include <iostream>
+#include <bits/stdc++.h>
+#include <unordered_map>
+using namespace std;
+
+#define FOR(i, j, k, in) for (LL int i=j ; i<k ; i+=in)
+#define RFOR(i, j, k, in) for (LL int i=j ; i>=k ; i-=in)
+#define LL long long
+
+LL int getTime(){
+    
+    LL int n,m;
+    LL int* arr1;
+    cin >> n;
+    cin >> m;
+
+    arr1 = new LL int[n+1];
+    unordered_map<LL int,LL int> arr1_map;
+
+    LL int i;
+    FOR(i,1,n+1,1){
+        scanf("%lld",&arr1[i]);
+        arr1_map[arr1[i]]=i;
+    }
+    
+
+    LL int p_i = 0;//previous index at which gift was found
+    LL int t =0;//total time
+    i=1;
+    FOR(i,1,m+1,1){
+        
+        LL int item = 0;
+        scanf("%lld",&item);
+
+        //line below was previous approach and gave time exceeded
+        //trying hashmap instead
+        // int j=1;
+        // while(arr1[j] != item){
+        //     j++;
+        // }
+        
+        LL int j=arr1_map[item];
+
+        if(j < p_i){
+            //printf("t+=1\n");
+            t+=1;
+        }
+        else{
+            LL int k = j-1; //boxes on top are one more than j
+            LL int collected = i-1;
+            LL int temp1 = k-collected;
+            LL int temp2 = 2*temp1 ;
+            LL int temp3 = temp2+1;
+            t = (LL int)t + (LL int)temp3;
+            //t+= 2*(k-collected) + 1;
+            //printf("2*(%lld-%lld) + 1 \n",k,collected);;
+            p_i = j;
+        }
+        
+
+    }
+
+    delete[] arr1;
+    arr1 = nullptr;
+    return t;
+}
 
 
+int main()
+{
+    int no_of_cases=1;
+    cin>>no_of_cases; //uncomment on submission to use multiple
+    
+    LL int* arr = new LL int[no_of_cases];
+    
+    int i =0;
+    FOR(i,0,no_of_cases,1){
+        arr[i] = getTime();
+    }
 
+
+    FOR(i,0,no_of_cases,1){
+        printf("%lld\n",arr[i]);
+    }
+
+    delete[] arr;
+    arr = nullptr;
+    return 0;
+}
+```
+
+lessons learned
+BCR is important. Always use it and utilize operations below it.
+Test Cases can let you find flaws quickly
+always take care of deletion of memory
+keep notice of the size of number and use data type accordingly (use long long)
+think of a solution and simplify it as long as it does not beat the previous solution complexity.
+use printf and scanf instead of cout and cin
+convert to real world scenerios in order to solve quicker
 
 
 
