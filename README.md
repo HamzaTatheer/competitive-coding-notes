@@ -63,6 +63,20 @@ unlike sql, it is COUNT(DISTINCT CITY) not DISTINCT COUNT(CITY)
 cities that start with and ends with vowels (notice use of '.')
 SELECT CITY FROM STATION WHERE CITY REGEXP '^[aeiou].*.[aeiou]$';
 
+
+I had to change some values from select query. I tried update but it was wrong as update only works on created tables
+
+SELECT (CASE WHEN GRADE < 8 THEN NULL ELSE NAME END) AS NAME,GRADE,MARKS
+FROM
+(
+SELECT NAME,(SELECT GRADE FROM GRADES AS G WHERE S.MARKS BETWEEN G.MIN_MARK AND G.MAX_MARK) AS GRADE,MARKS
+FROM STUDENTS AS S
+ORDER BY GRADE DESC, NAME ASC
+) AS REPORT;
+
+
+
+
 ## Question 1
 
 <img src='https://github.com/HamzaTatheer/competitive-coding-notes/blob/main/images/stats_question.png?raw=true'/>
