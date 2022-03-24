@@ -1,6 +1,32 @@
 # Competitive Coding Practice notes
 coding/maths questions with intuitive understanding and lessons learned
 
+## OOP
+
+static functions only access static but non static can access static
+super() must always be the first line (else error) in the method if parent class also contains super().
+If you do not write super, it wil be called with default paremeters(i.e 0)
+
+
+
+String - immutable
+StringBuilder - mutable
+StringBuffer - mutable
+
+
+StingBuffer is thread safe and synchorised but slower (vice versa)
+
+
+
+difference between association, agregation, encapsulation
+
+association (has a but not part of relationship and no ownership) -> agregration (has a + part of relationship + no owner ship) -> encapsulation (has a + ownership)
+
+
+Implementation of association and agregation is same i.e one objects hold reference of another.
+But intention is different, association is simply using that object but has no "part" relationship (i.e engine is part of car)
+agregation says that other object is part of it but it can still exist independently
+
 
 ## MYSQL NOTES
 
