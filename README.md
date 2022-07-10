@@ -685,3 +685,223 @@ convert to real world scenerios in order to solve quicker
 
 
 
+## <a href="https://codeforces.com/contest/1633/problem/A">Div. 7</a>
+
+It was a easy problem
+
+```
+#include <iostream>
+using namespace std;
+
+int findNumOfDigits(int n) {
+
+	int i = 0;
+
+	while (n != 0) {
+		n /= 10;
+		i++;
+	}
+
+	return i;
+}
+
+int findNumOfSameDigits(int a, int b) {
+	
+
+	int i = 0;
+
+	while (a != 0 && b != 0) {
+
+		if (a % 10 == b % 10) {
+			i++;
+		}
+
+		a /= 10;
+		b /= 10;
+
+	}
+
+	return i;
+
+}
+
+
+
+int findClosestDivisible(int n) {
+
+	if (n % 7 == 0)
+		return n;
+
+
+	int s1 = n % 7;
+	int s2 = 7 - s1;
+
+
+	int a = n - s1;
+	int b = n + s2;
+
+	int len = findNumOfDigits(n);
+
+
+	//i.e avoiding leading zeros
+	if (findNumOfDigits(a) < len)
+		return b;
+	
+	if (findNumOfDigits(b) < len)
+		return a;
+
+
+	//no of digits of a and b are same at this step
+
+	if (findNumOfSameDigits(a, n) > findNumOfSameDigits(b, n))
+		return a;
+	else
+		return b;
+
+}
+
+
+int main() {
+
+	int k = 0;
+	cin >> k;
+
+
+	for (int i = 0; i < k; i++) {
+		int n = 0;
+		cin >> n;
+		cout << findClosestDivisible(n) << endl;
+	}
+
+
+}
+```
+
+## <a href='https://codeforces.com/contest/1633/problem/B'>Minority</a>
+
+
+Before Looking at Solution:
+This problem was challenging because it seems like it is a np complete problem. max sum subset problem is a problem trying to find max scores.
+This problem is same but with different definition of score.
+
+After looking at the title of the problem as "Greedy". My learning is that when it comes to a brute force solution, If we can not make it optimal.
+we can take smart decisions that may (or may not) lead to optimal solutions quicker.
+
+My current approach would be to use a Max Priority Queue in order to have multiple subsets competing with each other and choosing the one with max chance.
+However, this approach fails because you would still have to check all to make sure you are not making the wrong choice.
+
+All my approaches are failing.
+
+After taking a bit of hint and help.
+you will be getting input. While getting input. you can keep track of number of 1s and number of 0s at each index.
+What this means is that, you are storing data of prior subset at each point.
+
+
+My Solution:
+O(n^2)
+Record number of 1s and number of 0s at each index
+make second pass that checks one by one with the ones ahead
+keep recording max value
+
+```
+#include <iostream>
+#include <vector>
+using namespace std;
+
+struct Point
+{
+	int no_of_1s;
+	int no_of_0s;
+};
+
+int getOnesAt(vector<Point> arr, int i) {
+	if (i < 0) {
+		return 0;
+	}
+
+	return arr[i].no_of_1s;
+}
+
+int getZerosAt(vector<Point> arr, int i) {
+	if (i < 0) {
+		return 0;
+	}
+
+	return arr[i].no_of_0s;
+}
+
+int findEliminations(vector<Point> arr,int i,int j) {
+
+	int ones = getOnesAt(arr,j) - getOnesAt(arr, i - 1);
+	int zeros = getZerosAt(arr, j) - getZerosAt(arr, i - 1);
+
+	if (ones == zeros)
+		return 0;
+
+	return min(ones, zeros);
+}
+
+
+void findMaxEliminations(string x) {
+	int n = size(x);
+
+	vector<Point> arr;
+	int ones = 0;
+	int zeros = 0;
+
+	//first pass
+	for (int i = 0; i < n; i++) {
+		if (x[i] == '1')
+			ones++;
+		else
+			zeros++;
+
+
+		Point p;
+		p.no_of_0s = zeros;
+		p.no_of_1s = ones;
+		arr.push_back(p);
+	}
+
+	int max_eliminations = 0;
+
+	//second pass
+	for (int i = 0; i < n; i++) {
+		for (int j = i + 1; j < n; j++) {
+			max_eliminations = max(max_eliminations, findEliminations(arr, i, j));
+		}
+	}
+
+	cout << max_eliminations << endl;
+
+}
+
+
+int main() {
+
+	int t = 0;
+	cin >> t;
+
+
+	cin.clear();
+	for (int i = 0; i < t; i++) {
+		string x = "";
+		cin >> x;
+		findMaxEliminations(x);
+	}
+
+}
+```
+
+This solution is correct but failed on test case no 3
+
+
+
+
+
+
+
+
+
+
+
