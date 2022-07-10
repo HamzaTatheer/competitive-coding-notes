@@ -895,6 +895,63 @@ int main() {
 
 This solution is correct but failed on test case no 3
 
+I just tried another approach. It was so simple. The question misled in the sense that it showed that we needed to choose a substring.
+My mind went towards finding the substring. Instead, all it required was a trick which is that count total number of 1s and count total number of 0s.
+Whichever is less, is the max number of eliminations that can happen. We can not go lower than that.
+If we reduce the string size, we either lose the dominant (in that case, less capacity) or the minority (in that case, less elimination).
+so our answer would be min(0,1). However, what if they are equal, in that case, choosing a smaller substring means we will be reducing
+either 0s or 1s which works in our advantage as we will be creating a minority. what this means is that in such a case, our answer will 
+number of 0s or 1s - 1. substracting one would be natural as removing one number from super string gives us minority which is also max elimination as going lower would mean we either reduce minority (not wanted) or reduce the majority (which doesnt lead towards our goal but instead moves us away as minority < majority. But if we lower majority. then minority will have a lower upper bound)
+
+
+```
+#include <iostream>
+#include <vector>
+using namespace std;
+
+
+
+void findMaxEliminations(string x) {
+	int n = size(x);
+	int ones = 0;
+	int zeros = 0;
+
+	for (int i = 0; i < n; i++) {
+		if (x[i] == '1')
+			ones++;
+		else
+			zeros++;
+	}
+
+
+	int ans = 0;
+	if (zeros != ones)
+		ans = min(zeros, ones);
+	else {
+		if (zeros != '1' && ones != '1')
+			ans = zeros - 1;
+	}
+
+	cout<<ans<<endl;
+}
+
+
+int main() {
+
+	int t = 0;
+	cin >> t;
+
+
+	cin.clear();
+	for (int i = 0; i < t; i++) {
+		string x = "";
+		cin >> x;
+		findMaxEliminations(x);
+	}
+
+}
+```
+
 
 
 
