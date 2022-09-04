@@ -1,6 +1,9 @@
 # Competitive Coding Practice notes
 coding/maths questions with intuitive understanding and lessons learned
 
+Good article for keeping track https://medium.com/swlh/how-to-study-for-data-structures-and-algorithms-interviews-at-faang-65043e00b5df
+
+
 ## OOP
 
 static functions only access static but non static can access static
@@ -951,6 +954,10 @@ int main() {
 
 }
 ```
+
+
+
+
 
 
 
