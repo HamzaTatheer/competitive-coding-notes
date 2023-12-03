@@ -955,8 +955,27 @@ int main() {
 }
 ```
 
+## <a href='https://leetcode.com/problems/two-sum/'>Two Sum Problem ( O(n) trick used to solve many other problem involving pairs )</a>
 
-
+```
+class Solution {
+    public int[] twoSum(int[] nums, int target) {
+        int[] ans = new int[2];
+        HashMap<Integer,Integer> ValIndexMap = new HashMap<>();
+        for (int i=0;i<nums.length; i++){
+            int num = nums[i];
+            int otherNumber = target - num;
+            if(ValIndexMap.get(otherNumber) != null){
+                return new int[]{ValIndexMap.get(otherNumber),i};
+            }
+            else{
+                ValIndexMap.put(nums[i],i);
+            }
+        }
+        return new int[]{};
+    }
+}
+```
 
 
 
